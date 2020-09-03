@@ -1,10 +1,10 @@
 import os
 import re
+import urllib.request
 
 from zhihu.conf import config
 from zhihu.document import markdown, html
 from zhihu.spider.core import Crawler
-
 
 class Meta:
     intact = 0
@@ -42,10 +42,12 @@ class Document:
             path = os.path.join(config.wh(), 'image')
             if not os.path.exists(path):
                 os.makedirs(path)
-            with open(os.path.join(path, file_name), 'wb') as foo:
-                foo.write(cra.download(image_url).content)
-                print('{:<8}\t{}'.format(str(cls.index) + '-' + str(index), file_name))
-                index += 1
+            # with open(os.path.join(path, file_name), 'wb') as foo:
+            #     foo.write(cra.download(image_url).content)
+            path = path + '%s.jpg';
+            urllib.request.urlretrieve(image_url, path % index)
+            print('{:<8}\t{}'.format(str(cls.index) + '-' + str(index), file_name))
+            index += 1
 
     @classmethod
     def item2html(cls, cont, meta):

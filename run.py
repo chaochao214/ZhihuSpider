@@ -9,7 +9,7 @@ config.warehouse(r'C:\Users\{}\Desktop'.format('??'))
 config.setting('running/file_type', 0)
 config.setting('running/cached', False)
 config.setting('running/css_output', False)
-config.setting('running/download_image', False)
+config.setting('running/download_image', True)
 config.setting('running/cover', False)
 
 # ### 启动爬虫 #### #
